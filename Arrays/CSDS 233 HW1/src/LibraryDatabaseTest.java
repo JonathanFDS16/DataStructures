@@ -2,6 +2,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+
 public class LibraryDatabaseTest {
 
     public Book a = new Book("The Fear", "4867564321651", "Jonathan");
@@ -16,8 +17,8 @@ public class LibraryDatabaseTest {
     @Test
     public void testConstructor() {
         //Negative capacity or 0
-        //assertThrows(IllegalArgumentException.class ,() -> new LibraryDatabase(-1));
-        //assertThrows(IllegalArgumentException.class ,() -> new LibraryDatabase(0));
+        assertThrows(IllegalArgumentException.class ,() -> new LibraryDatabase(-1));
+        assertThrows(IllegalArgumentException.class ,() -> new LibraryDatabase(0));
     }
 
     @Test

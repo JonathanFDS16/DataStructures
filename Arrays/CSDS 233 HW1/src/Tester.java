@@ -1,5 +1,8 @@
-import static org.junit.Assert.*;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+
 
 public class Tester {
 
@@ -226,7 +229,7 @@ public class Tester {
         if (arr[0] != b1) fail("First book is not 'Charlotte's Web'");
         else if (arr[1] != b2) fail("Second book is not 'Tintin in America'");
         else if (arr.length > 2 && arr[2] != null) fail("Not enough books were removed");
-        else assertTrue("Non-null elements found after null element",passed);
+        else assertTrue("Non-null elements found after null element", passed);
     }
 
     @Test
