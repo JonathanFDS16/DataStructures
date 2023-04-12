@@ -1,4 +1,6 @@
-public class Art  {
+import java.util.Comparator;
+
+public class Art implements Comparator<Art> {
 
     private int height;
 
@@ -16,6 +18,11 @@ public class Art  {
         this.width = width;
         this.name = name;
         this.artistName = artistName;
+    }
+
+    @Override
+    public int compare(Art o1, Art o2) {
+        return o1.getArtistName().compareTo(o2.getArtistName());
     }
 
     public int compareTo(Art art, String searchAttribute, int direction) {
@@ -92,4 +99,6 @@ public class Art  {
     public void setArtistName(String artistName) {
         this.artistName = artistName;
     }
+
+
 }

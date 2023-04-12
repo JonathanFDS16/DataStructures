@@ -29,6 +29,25 @@ public class ArtMuseum {
         return Arrays.asList(artList);
     }
 
+    public List<Art> findArts(String artistName) {
+        List<Art> artsList = sort("artistName", 0);
+        ArrayList<Art> artistArts = new ArrayList<>();
+        for (int i = 0; i < artsList.size(); i++) {
+            if (artsList.get(i).getArtistName().equals(artistName)) {
+                artistArts.add(artsList.get(i));
+            }
+        }
+        return artistArts;
+    }
+
+    public List<Art> randomizeArts(int n) {
+        return null;
+    }
+
+    public List<Art> randomSort(List<Art> arts) {
+        return null;
+    }
+
     private void mergeSort(Art[] artList, String attribute, int direction) {
         //Divide artList into two arrays
         int listLength = artList.length;
@@ -70,18 +89,6 @@ public class ArtMuseum {
             artList[i++] = rightArray[r++];
         }
 
-    }
-
-    public List<Art> findArts(String artistName) {
-        return null;
-    }
-
-    public List<Art> randomizeArts(int n) {
-        return null;
-    }
-
-    public List<Art> randomSort(List<Art> arts) {
-        return null;
     }
 
     public String getMuseumName() {

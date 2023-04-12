@@ -26,8 +26,18 @@ class ArtMuseumTest {
         museum.add(art8);
         museum.add(art9);
         museum.add(art10);
+        /*
         for (Art art : museum.sort("artistName", -1)) {
             System.out.println(art.toString());
         }
+         */
+        for (Art art : museum.findArts("")) {
+            System.out.println(art.toString());
+        }
+    }
+
+    @Test
+    public void findArttest() {
+
     }
 }
