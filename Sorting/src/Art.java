@@ -1,4 +1,4 @@
-public class Art {
+public class Art  {
 
     private int height;
 
@@ -16,6 +16,41 @@ public class Art {
         this.width = width;
         this.name = name;
         this.artistName = artistName;
+    }
+
+    public int compareTo(Art art, String searchAttribute, int direction) {
+        if (searchAttribute.equals("height")) {
+            if (direction >= 0)
+                return this.getHeight() - art.getHeight();
+            else
+                return art.getHeight() - this.getHeight();
+        }
+        else if (searchAttribute.equals("width")) {
+            if (direction >= 0)
+                return this.getWidth() - art.getWidth();
+            else
+                return art.getWidth() - this.getWidth() ;
+        }
+        else if (searchAttribute.equals("price")) {
+            if (direction >= 0)
+                return this.getPrice() - art.getPrice();
+            else
+                return art.getPrice() - this.getPrice();
+        }
+        else if (searchAttribute.equals("name")) {
+            if (direction >= 0)
+                return this.getName().compareTo(art.getName());
+            else
+                return art.getName().compareTo(this.getName());
+        }
+        else if (direction >= 0)
+            return this.getArtistName().compareTo(art.getArtistName());
+        else
+            return art.getArtistName().compareTo(this.getArtistName());
+    }
+
+    public String toString() {
+        return height + " " + price + " " + width + " " + name + " " + artistName;
     }
 
     public int getHeight() {
