@@ -1,0 +1,37 @@
+read method
+1. for each line {
+    get a way to separate the words -> StringBuilder
+    the first word of the line is a node and the following is the neighbors
+
+    Possibilities:
+    1 - The first node does not exist.
+        Solution: add node to graph.
+
+    1.1 - The first node exists already
+        Sol: do not add to graph
+
+
+    2.0 - The neighbor does not exist in the graph yet
+        Sol: Add neighbor node to the graph, and create an edge between it and the first node.
+
+    2.1 - The neighbor exist in the graph
+        2.1.1 - The neighbor is not connected to first node
+            Solution: create an edge between it and firstNode
+        2.1.2 - The neighbor is connected to first node
+            Solution: DO NOTHING, because there is already an edge between them.
+
+    There is two operations:
+    1. Operation in the first node. Either add or not add to graph
+    2. Operation in neighbors.
+        Check if exist --> if not, add to graph and create edge.
+                           if yes, check if an edge already exist
+                                         if not, create an edge
+                                         if yes, do nothing.
+
+
+removeNode()
+
+    1. To remove a node first I need to check if node exist
+    2. Then I need to what are the node's neighbors
+        For each neighbor, I need to visit the neighbor and delete the neighbor I want to delete
+        At the end when the list is empty I delete the node from the hashtable.
