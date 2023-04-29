@@ -1,8 +1,9 @@
+import javax.xml.crypto.NodeSetData;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.LinkedList;
 
@@ -57,6 +58,7 @@ public class Graph<K, V> {
     private Hashtable<K, Node> nodesTable;
 
     private ArrayList<K> keys = new ArrayList<>();
+
 
     public Graph() {
         nodesTable = new Hashtable<>();
@@ -190,6 +192,82 @@ public class Graph<K, V> {
             }
         });
         return graph;
+    }
+
+    public K[] DFS(K from, K to) {
+        K[] type = (K[]) Array.newInstance(from.getClass(), 1);
+        ArrayList<K> array = new ArrayList<>();
+        search(from, to, array);
+
+        // Condition if 'to' is not connected to the graph.
+        if (!array.contains(to)) {
+            array = new ArrayList<>();
+            return array.toArray(type);
+        }
+
+        return array.toArray(type);
+    }
+
+    private void search(K from, K to, ArrayList<K> list) {
+        if (!nodesTable.containsKey(from) || !nodesTable.containsKey(to)) {
+            return;
+        }
+        if (from.equals(to)) {
+            list.add(to);
+            return;
+        }
+
+        K currentNode = from;
+
+        list.add(from);
+        LinkedList<Node> neighbors = nodesTable.get(from).getNeighbors();
+
+        for (Node n : neighbors) {
+            from = n.getName();
+            if (!list.contains(from) && !list.contains(to))
+                search(from, to, list);
+        }
+
+        if (!list.contains(to))
+            list.remove(currentNode);
+    }
+    public K[] BFS(K from, K to) {
+        K[] type = (K[]) Array.newInstance(from.getClass(), 1);
+
+        ArrayList<K> visited = new ArrayList<>();
+        ArrayList<K> previous = new ArrayList<>();
+        LinkedList<Node> queue = new LinkedList<>();
+
+        if (!nodesTable.containsKey(from) || !nodesTable.containsKey(to)) {
+            return previous.toArray(type);
+        }
+
+        queue.add(nodesTable.get(from));
+        visited.add(from);
+        while (!queue.isEmpty()) {
+            Node node = queue.remove();
+            LinkedList<Node> nodeNeighbors = node.getNeighbors();
+
+            if (node.getName().equals(to) || queue.contains(nodesTable.get(to))) {
+                previous.add(to);
+                return previous.toArray(type);
+            }
+            for (Node neighbor : nodeNeighbors) {
+                if (!visited.contains(neighbor.getName())) {
+                    queue.addLast(neighbor);
+                    visited.add(neighbor.getName());
+                    if (!previous.contains(node.getName()))
+                        previous.add(node.getName());
+                }
+            }
+        }
+
+        if (!previous.contains(to)) {
+            return new ArrayList<K>().toArray(type);
+        }
+
+        return previous.toArray(type);
+
     }
 
     private boolean containsNode(K name) {
